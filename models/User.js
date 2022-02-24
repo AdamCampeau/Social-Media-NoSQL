@@ -11,7 +11,7 @@ const userSchema=new Schema(
             type:String,
             unique:true,
             required:true,
-            match:
+            match: [/.+@.+\..+/, 'Must be a valid email']
         },
         thoughts:{
             type:Schema.Types.ObjectId,
@@ -25,7 +25,7 @@ const userSchema=new Schema(
     }
 );
 
-userSchema.virtual(('friendCount').get => {
+userSchema.virtual('friendCount').get(() => {
     return this.friends.length;
 });
 
